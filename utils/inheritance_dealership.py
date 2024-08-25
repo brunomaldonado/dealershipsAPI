@@ -2,8 +2,6 @@
 
 from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07
 
-from colorama import init, Fore, Back, Style
-init()
 class bcolors:
   HEADER = '\033[95m'
   OKBLUE = '\033[94m'
@@ -102,12 +100,6 @@ class Customer:
 
   
   def inquire_vehicle1(self, vehicle: Vehicle):
-    #if vehicle.check_available():
-      #availability = "Available"
-    #else:
-      #availability = "Not available"
-   
-    #print(f"\n The {vehicle.name} {vehicle.brand} {vehicle.model} is {availability} ")
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
     indentation_title5(message)
@@ -128,35 +120,23 @@ class Customer:
       print(f" Fuel Type: {car_object[0]['fuel_type'].capitalize()}")
       print(f" Drive Type: {car_object[0]['drive_type'].capitalize()}")
       print(f" Cam Type: {car_object[0]['cam_type']}")
-      # print(f" Description: {car_object[0]['make_model_trim']['description']}")
       message = f" Description: {car_object[0]['make_model_trim']['description']}"
       print(indentation_title2(message))
       print(f"\n {spacing_line}Price: ${car_object[0]['price']} (US starting price)\n")
-      # print("" * 1, "-" * 53)
 
   def inquire_vehicle2(self, vehicle: Vehicle):
-    #if vehicle.check_available():
-      #availability = "Available"
-    #else:
-      #availability = "Not available"
-   
-    #print(f"\n The {vehicle.name} {vehicle.brand} {vehicle.model} is {availability} ")
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
     indentation_title5(message)
 
     # print(motor_object)
     if 'power' in motor_object[0]:
-      # print("found")
       power = motor_object[0]['power']
     else:
-      # print("not found")
       power = f"no data"
     if 'torque' in motor_object[0]:
-      # print("FOUND")
       torque = motor_object[0]['torque']
     else:
-      # print("NOT FOUND")
       torque = f"no data"
     if 'bore_stroke' in motor_object[0]:
       bore_stroke = motor_object[0]['bore_stroke']
@@ -207,8 +187,6 @@ class Customer:
     else:
       fuel_capacity = f"no data"
      
-    # print(f"Power: {power}\nTorque {torque}")
-   
     if vehicle.check_available():
       initial_line = " " * 42
       spacing_line = " " * 17
@@ -234,21 +212,11 @@ class Customer:
       print(indentation_title05(f" Rear Suspension: {rear_suspension}"))
       print(indentation_title06(f" Front Brakes: {motor_object[0]['front_brakes']}"))
       print(indentation_title07(f" Rear Brakes: {motor_object[0]['rear_brakes']}"))
-      # print(f" Dry Weight: {motor_object[0]['dry_weight']}  Total Weight: {motor_object[0]['total_weight']}")
       print(f" Fuel Capacity: {fuel_capacity}")
       print(f" Starter: {motor_object[0]['starter']}")
       print(f"\n {spacing_line}Price: ${motor_object[0]['price']} (US starting price)\n")
-      # print("" * 1, "-" * 53)
-
-      # print("" * 1, "-" * 53)
 
   def inquire_vehicle3(self, vehicle: Vehicle):
-  #if vehicle.check_available():
-    #availability = "Available"
-  #else:
-    #availability = "Not available"
-  
-  #print(f"\n The {vehicle.name} {vehicle.brand} {vehicle.model} is {availability} ")
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
     indentation_title5(message)
@@ -266,47 +234,38 @@ class Dealership:
 
   def add_vehicles1(self, vehicle: Vehicle):
     self.cars_inventory.append(vehicle)
-    #print(f" {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory")
     message = f"{bcolors.OKCYAN}The vehicle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
 
     
   def add_vehicles2(self, vehicle: Vehicle):
     self.motorcycles_inventory.append(vehicle)
-    #print(f" {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory")
     message = f"{bcolors.OKCYAN}The vehicle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
   
   def add_vehicles3(self, vehicle: Vehicle):
     self.trucks_inventory.append(vehicle)
-    #print(f" {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory")
-    # message = f"{bcolors.OKCYAN}The vehicle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
-    # indentation_title5(message)
 
   def register_customers(self, customer: Customer):
     self.customers.append(customer)
-    #print(f"The customer {customer.name} has been added")
     message = f"{bcolors.OKBLUE}{customer.name} customer has been registered at the dealership{bcolors.ENDC}"
     indentation_title5(message)
 
   def show_available_vehicles(self):
-    # print()
     print("" * 1, "-" * 53)
     print(f"        Vehicles Available on the Dealership.".upper())
     print("" * 1, "-" * 53)
-    # print("\n Cars available\n")
-    # print("\n Motorcycles available\n")
-    # print("\n Trucks available\n")
-    
+
     formatted_titles1 = []
     formatted_titles2 = []
     formatted_titles3 = []
 
     if len(self.cars_inventory) == 0:
-      # print("no show nothing")
+      print("\n Cars available.")
+      print("        You don't have any vehicles added yet.\n")
       pass
     else:
-      print("\n Cars available\n")
+      print("\n Cars available.\n")
       # for idx, vehicle in enumerate(self.cars_inventory, start=1):
       #   if vehicle.check_available():
       #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
@@ -334,10 +293,11 @@ class Dealership:
       print()
 
     if len(self.motorcycles_inventory) == 0:
-      # print("nothing motorcle added to leadershio!")
+      print("\n Motorcycles available.")
+      print("         You don't have any vehicles added yet.\n")
       pass
     else:
-      print("\n Motorcycles available\n")
+      print("\n Motorcycles available.\n")
       # for idx, vehicle in enumerate(self.motorcycles_inventory, start=1):
       #   if vehicle.check_available():
       #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
@@ -373,7 +333,7 @@ class Dealership:
     if len(self.trucks_inventory) == 0:
       pass
     else:
-      print("\n Trucks available\n")
+      print("\n Trucks available.\n")
 
       # for idx, vehicle in enumerate(self.trucks_inventory, start=1):
       #   if vehicle.check_available():

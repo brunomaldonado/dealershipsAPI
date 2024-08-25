@@ -43,7 +43,6 @@ def car_engines():
 
 
 # Motorcycle requests
-
 # headers1 = {
 #   "x-rapidapi-key": "627629bd6dmsha98c129e3532846p13d202jsna9dfd8219a65",
 #   "x-rapidapi-host": "cars-motorcycles-trucks-models-and-prices.p.rapidapi.com"
