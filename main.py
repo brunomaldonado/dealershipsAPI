@@ -5,6 +5,7 @@ from utils import server
 from utils.config import car_object, motor_object, indentation_title4
 from utils.inheritance_dealership import Car, Motorcycle, Trucks, Customer, Dealership
 from rapid.trucks import trucks_data
+from datetime import datetime
 
 def print_options():
   print()
@@ -36,6 +37,11 @@ def print_service_line():
 
 def main():
   dealership = Dealership()
+
+  def date_time():
+    current_date = datetime.now()
+    formatted_date = current_date.strftime("Date: %d, %B %Y")
+    return formatted_date
 
   def register_customer1():
     name = input("\n Enter your name: ")  
@@ -260,10 +266,15 @@ def main():
           customer_name = 'Katharine Bennet'
         else:
           customer_name = dealership.customers[0].name
-        spacing = " " * 15
+        spacing = " " * 15 
+        initial_spacing = " " * 32
         print()
+        print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
         print(f" INVENTORY {spacing}Customer: 🧑🏼‍⚖️ {customer_name}")
+        # print("" * 1, " " * 15, "-" * 20, )
+        # print("" * 1, "-" * 53, )
+        
 
         car_id_count = {}
         car_details = []
@@ -387,11 +398,15 @@ def main():
         else:
           customer_name = dealership.customers[0].name
         spacing = " " * 11
+        initial_spacing = " " * 32
         print()
+        print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
         print(f" CUSTOMER DATA {spacing}Customer: 🧑🏼‍⚖️ {customer_name}")
         print("" * 1, "-" * 53)
-        print()
+        # print(f" {initial_spacing}Date: 24, August 2024")
+        # print(f" {initial_spacing}{date_time()}")
+        # print()
         
         seen = set()
         result = []
@@ -404,11 +419,14 @@ def main():
               result.append(car)
               
         print("\n List of purchased vehicles\n")
-        
-        for idx, car in enumerate(result, start=1):
-          print(f" {idx:2}.- {car.name} {car.brand} {car.model}")   
 
-        print("\n")  
+        if len(result) == 0:
+          print("           |Has no purchased vehicles...!|\n")
+        else:
+          for idx, car in enumerate(result, start=1):
+            print(f" {idx:2}.- {car.name} {car.brand} {car.model}")   
+
+          print("\n")  
       elif option == 5:
         break
     except ValueError:

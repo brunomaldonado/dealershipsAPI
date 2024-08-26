@@ -38,6 +38,9 @@ class Vehicle:
   def get_price(self):
     return self.price
 
+  def message(self):
+    return " All the vehicles have been sold"
+
   def start_engine(self):
     raise NotImplementedError("This methods should be implement for sub-class")
   
@@ -260,12 +263,16 @@ class Dealership:
     formatted_titles2 = []
     formatted_titles3 = []
 
+    # if len(self.cars_inventory) == 0 and len(self.motorcycles_inventory) == 0:
+    #   print("\n You don't have any vehicles added yet.\n")
+
     if len(self.cars_inventory) == 0:
-      print("\n Cars available.")
-      print("        You don't have any vehicles added yet.\n")
+      # print("\n Cars available.")
+      # print(" You don't have any vehicles added yet.\n")
       pass
     else:
       print("\n Cars available.\n")
+      # print(" All the vehicles have been sold")
       # for idx, vehicle in enumerate(self.cars_inventory, start=1):
       #   if vehicle.check_available():
       #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
@@ -293,8 +300,8 @@ class Dealership:
       print()
 
     if len(self.motorcycles_inventory) == 0:
-      print("\n Motorcycles available.")
-      print("         You don't have any vehicles added yet.\n")
+      # print("\n Motorcycles available.")
+      # print(" You don't have any vehicles added yet.\n")
       pass
     else:
       print("\n Motorcycles available.\n")
