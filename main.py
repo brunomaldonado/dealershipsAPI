@@ -90,7 +90,7 @@ def main():
         return None
      
     while True:
-      selection = int(input("\n Select car #: "))
+      selection = int(input("\n Selected car #: "))
       selected_number = select_index(selection)
       car_number = selected_number + 1
       if isinstance(selected_number, int):
@@ -125,7 +125,7 @@ def main():
             break
       else:
         print("Invalid selection")
-      option = int(input(" [1] Select car #    [2] Exit.\n Option: "))
+      option = int(input(" [1] Selected car #    [2] Exit.\n Option: "))
       if option == 2:
         break
 
@@ -182,7 +182,7 @@ def main():
         return None
 
     while True:
-      selection = int(input("\n Select motorcycle #: "))
+      selection = int(input("\n Selected motorcycle #: "))
       selected_number = select_index(selection)
       motorcycle_number = selected_number + 1
       if isinstance(selected_number, int):
@@ -220,7 +220,7 @@ def main():
       else:
         print("invalid selection")
       
-      option = int(input(" [1] Select motorcycle #     [2] Exit.\n Option: "))
+      option = int(input(" [1] Selected motorcycle #     [2] Exit.\n Option: "))
       if option == 2:
         break
   
@@ -294,7 +294,7 @@ def main():
           question = input("\n Do you like to inquire the details? (y/n) : ").strip().lower()
           if question == 'y':
             try:
-              selection = int(input(" Vehicle # selector: "))
+              selection = int(input(" Selected vehicle #: "))
 
               def inquire_car_buy():
                 index = dealership.car_number.index(selection)
