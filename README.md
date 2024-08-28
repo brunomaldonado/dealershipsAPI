@@ -9,12 +9,12 @@ python3 main.py
 <p align="center">
   <img src="./frames/home.PNG" style="border-radius:6px" width="43%" alt="initial page">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="./frames/sell.PNG" style="border-radius:6px" width="43%" alt="sell vehicle">
+  <img src="./frames/buyed.PNG" style="border-radius:6px" width="43%" alt="vehicle buyed">
 </p>
 <p align="center">
-  <img src="./frames/notavailable.PNG" style="border-radius:6px" width="43%" alt="vehicle not available">
+  <img src="./frames/available.PNG" style="border-radius:6px" width="43%" alt="vehicle not available">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="./frames/customer.PNG" style="border-radius:6px" width="43%" alt="custromer data">
+  <img src="./frames/data.PNG" style="border-radius:6px" width="43%" alt="customer data">
 </p>
 <!-- <p align="center">
   <img src="./images/gibraltar_europe.png" style="border-radius:6px", width="43% alt="gibraltar chart">
