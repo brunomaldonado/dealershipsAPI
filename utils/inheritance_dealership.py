@@ -1,7 +1,7 @@
 
 
 from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07
-
+import random
 class bcolors:
   HEADER = '\033[95m'
   OKBLUE = '\033[94m'
@@ -109,9 +109,11 @@ class Customer:
 
     # print("car_object...", car_object)
     if vehicle.check_available():
-      spacing_line = " " * 13
+      random_year = random.randint(2022, 2024)
+      spacing_line = " " * 15
       print("" * 1, "-" * 53)
-      print(f" Year: {car_object[0]['make_model_trim']['year']}         Create: {car_object[0]['make_model_trim']['created']}")
+      # print(f" Year: {car_object[0]['make_model_trim']['year']}         Create: {car_object[0]['make_model_trim']['created']}")
+      print(f" Year: {random_year}         Create: {car_object[0]['make_model_trim']['created']}")
       print(f" Name: {car_object[0]['make_model_trim']['make_model']['make']['name']}")
       print(f" Design: {car_object[0]['make_model_trim']['name']}")
       print(f" Performance: {car_object[0]['make_model_trim']['make_model']['name']}")
@@ -272,7 +274,6 @@ class Dealership:
       pass
     else:
       print("\n Cars available.\n")
-      # print(" All the vehicles have been sold")
       # for idx, vehicle in enumerate(self.cars_inventory, start=1):
       #   if vehicle.check_available():
       #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
@@ -295,7 +296,6 @@ class Dealership:
           title_format = f"{idx}.- {formatted_title}"
         else:
           title_format = f"{idx}.- {formatted_title}"
-        
         print(indentation_title4(title_format))
       print()
 
@@ -332,7 +332,6 @@ class Dealership:
           title_format = f"{idx}.- {formatted_title}"
         else:
           title_format = f"{idx}.- {formatted_title}"
-        
         print(indentation_title4(title_format))
       print()
     
@@ -356,7 +355,6 @@ class Dealership:
           title_format = f"{idx}.- {formatted_title}"
         else:
           title_format = f"{idx}.- {formatted_title}"
-        
         print(indentation_title4(title_format))
       print()
     

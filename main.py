@@ -37,7 +37,7 @@ def print_service_line():
 
 def main():
   dealership = Dealership()
-
+  
   def date_time():
     current_date = datetime.now()
     formatted_date = current_date.strftime("Date: %d, %B %Y")
@@ -57,15 +57,16 @@ def main():
     data = server.car_engines()
     list_car_brands = []
     car_price = []
-    lower_bound = 263549.00
-    upper_bound = 1350700.00
+    lower_bound = 23950
+    upper_bound = 80790
     random_numbers = [random.uniform(lower_bound, upper_bound) for _ in range(100)]
 
     for price in random_numbers:
-      on_sale = price
+      on_sale = int(price)
       prices = "{:,.2f}".format(on_sale)
       car_price.append(prices)
 
+    # print(car_price)
     for idx, item in enumerate(data, start=1):
       list_car_brands.append(f"{item['make_model_trim']['make_model']['make']['name']} {item['make_model_trim']['make_model']['name']} {item['make_model_trim']['name']}")
 
@@ -145,7 +146,7 @@ def main():
     initial_spacing = "" * 2
     random_numbers = [random.uniform(lower_bound, upper_bound) for _ in range(122)]
     for value in random_numbers:
-      on_sale = value
+      on_sale = int(value)
       formatted_price = "{:,.2f}".format(on_sale)
       price = formatted_price.replace(',', 'X').replace('.', ',').replace('X', '.')
       motorcycle_price.append(price)
