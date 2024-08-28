@@ -40,7 +40,7 @@ def main():
   
   def date_time():
     current_date = datetime.now()
-    formatted_date = current_date.strftime("Date: %d, %B %Y")
+    formatted_date = current_date.strftime("%B %d, %Y")
     return formatted_date
 
   def register_customer1():
@@ -268,7 +268,7 @@ def main():
         else:
           customer_name = dealership.customers[0].name
         spacing = " " * 15 
-        initial_spacing = " " * 32
+        initial_spacing = " " * 38
         print()
         print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
@@ -399,13 +399,13 @@ def main():
         else:
           customer_name = dealership.customers[0].name
         spacing = " " * 11
-        initial_spacing = " " * 32
+        initial_spacing = " " * 38
         print()
         print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
         print(f" CUSTOMER DATA {spacing}Customer: 🧑🏼‍⚖️ {customer_name}")
         print("" * 1, "-" * 53)
-        # print(f" {initial_spacing}Date: 24, August 2024")
+        # print(f" {initial_spacing}Date: August 24, 2024")
         # print(f" {initial_spacing}{date_time()}")
         # print()
         

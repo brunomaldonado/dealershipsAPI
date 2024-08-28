@@ -7,12 +7,12 @@ python3 main.py
 ```
 
 <p align="center">
-  <img src="./frames/main.PNG" style="border-radius:6px" width="43%" alt="initial page">
+  <img src="./frames/home.PNG" style="border-radius:6px" width="43%" alt="initial page">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="./frames/sell.PNG" style="border-radius:6px" width="43%" alt="vehicle">
+  <img src="./frames/sell.PNG" style="border-radius:6px" width="43%" alt="sell vehicle">
 </p>
 <p align="center">
-  <img src="./frames/notavailable.PNG" style="border-radius:6px" width="43%" alt="vehicle available">
+  <img src="./frames/notavailable.PNG" style="border-radius:6px" width="43%" alt="vehicle not available">
 &nbsp; &nbsp; &nbsp; &nbsp;
   <img src="./frames/customer.PNG" style="border-radius:6px" width="43%" alt="custromer data">
 </p>
