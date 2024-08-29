@@ -9,10 +9,10 @@ python3 main.py
 <p align="center">
   <img src="./frames/home.PNG" style="border-radius:6px" width="43%" alt="initial page">
 &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="./frames/buyed.PNG" style="border-radius:6px" width="43%" alt="vehicle buyed">
+  <img src="./frames/available.png" style="border-radius:6px" width="43%" alt="vehicle buyed">
 </p>
 <p align="center">
-  <img src="./frames/available.PNG" style="border-radius:6px" width="43%" alt="vehicle not available">
+  <img src="./frames/notavailable.png" style="border-radius:6px" width="43%" alt="vehicle not available">
 &nbsp; &nbsp; &nbsp; &nbsp;
   <img src="./frames/data.PNG" style="border-radius:6px" width="43%" alt="customer data">
 </p>
