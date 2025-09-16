@@ -2,6 +2,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils import server
+from utils.config import textwrap_title
 import random
 import time
 import sys
@@ -63,12 +64,23 @@ def luxury_motorcycle():
   #   print(name)
     
   character = '/'
-  count = 1
-  for brand_name in list_motorcycle_brands:
-    if character not in brand_name:
-      print(f" [{count:3}] {brand_name}")
-      list_motorcycle_models.append(brand_name)
-      count += 1 
+  # count = 1
+  # for brand_name in list_motorcycle_brands:
+  #   if character not in brand_name:
+  #     print(f" [{count:3}] {brand_name}")
+  #     list_motorcycle_models.append(brand_name)
+  #     count += 1
+  print(list_motorcycle_brands)
+  print("\n")
+
+  for idx, brand_name in enumerate(list_motorcycle_brands, start=1):
+    # print(f"[{idx:3}] {brand_name}")
+    wrapped_lines = textwrap_title(brand_name)
+    print(f" {idx:3} {wrapped_lines[0].lstrip()}")
+    for line in wrapped_lines[1:]:
+      print(line)
+
+    list_motorcycle_models.append(brand_name)
 
   def select_index(selection):
     if 1 <= selection <= len(list_motorcycle_brands):

@@ -1,9 +1,25 @@
 # indentation functions
 import time
 import threading
+import textwrap
 
 car_object = []
 motor_object = []
+
+def textwrap_title(title):
+  spacing_line = " " * 7
+  max_width = 49
+  wrapped_title = textwrap.wrap(title, max_width)
+
+  return[f"{spacing_line}{line}" for line in wrapped_title]
+
+def textwrap_name(name):
+  spacing_line = " " * 9
+  max_width = 60
+  wrapped_title = textwrap.wrap(name, max_width)
+
+  return [f"{spacing_line}{line}" for line in wrapped_title]
+
 
 def indentation_title2(title, width=46, char_delay=0):
   # print(" " * 1, "-" * 53)

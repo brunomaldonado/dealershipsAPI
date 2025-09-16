@@ -1,6 +1,6 @@
 
 
-from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07
+from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name
 import random
 class bcolors:
   HEADER = '\033[95m'
@@ -346,17 +346,21 @@ class Dealership:
       #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
       for idx, (num, truck) in enumerate(zip(self.truck_number, self.trucks_inventory), start=1):
         if truck.check_available():
-          formatted_titles3.append(f" [{num}] {truck.name} {truck.brand} {truck.model}")
+          formatted_titles3.append(f" [{num:3}] {truck.name} {truck.brand} {truck.model}")
       
       for idx, formatted_title in enumerate(formatted_titles3, start=1):
-        if idx < 10:
-          spacing_line = " " * 1
-          print(spacing_line, end="", flush=True)
-          title_format = f"{idx}.- {formatted_title}"
-        else:
-          title_format = f"{idx}.- {formatted_title}"
-        print(indentation_title4(title_format))
-      print()
+        wrapped_lines = textwrap_name(formatted_title)
+        print(f" {bcolors.OKCYAN}{idx:2}{bcolors.ENDC} {wrapped_lines[0].lstrip()}")
+        for line in wrapped_lines[1:]:
+          print(line)
+      #   if idx < 10:
+      #     spacing_line = " " * 1
+      #     print(spacing_line, end="", flush=True)
+      #     title_format = f"{idx}.- {formatted_title}"
+      #   else:
+      #     title_format = f"{idx}.- {formatted_title}"
+      #   print(indentation_title4(title_format))
+      # print()
     
  
 # car1 = Car("Alfa Romeo", "Stelvio", "Ti Sport Carbon")
