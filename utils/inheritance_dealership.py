@@ -239,13 +239,13 @@ class Dealership:
 
   def add_vehicles1(self, vehicle: Vehicle):
     self.cars_inventory.append(vehicle)
-    message = f"{bcolors.OKCYAN}The vehicle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
+    message = f"{bcolors.OKCYAN}The Car {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
 
     
   def add_vehicles2(self, vehicle: Vehicle):
     self.motorcycles_inventory.append(vehicle)
-    message = f"{bcolors.OKCYAN}The vehicle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
+    message = f"{bcolors.OKCYAN}The Motorcycle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
   
   def add_vehicles3(self, vehicle: Vehicle):
@@ -301,39 +301,44 @@ class Dealership:
 
     if len(self.motorcycles_inventory) == 0:
       # print("\n Motorcycles available.")
-      # print(" You don't have any vehicles added yet.\n")
+      print(" You don't have any Motorcycles added yet.\n")
       pass
     else:
       print("\n Motorcycles available.\n")
-      # for idx, vehicle in enumerate(self.motorcycles_inventory, start=1):
-      #   if vehicle.check_available():
-      #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
-      for idx, (num, motor) in enumerate(zip(self.motor_number, self.motorcycles_inventory), start=1):
-        if motor.check_available():
-          if num < 10:
-            spacing_after = " " * 0
-            spacing_line = " " 
-            print(spacing_after, end="", flush=True)
-            number = f"{spacing_line}{num}{spacing_line}"
-          elif num < 100:
-            spacing_after = " " * 0
-            spacing_line = " "
-            print(spacing_after, end="", flush=True)
-            number = f"{num}{spacing_line}"
-          else:
-            spacing_line = ""
-            number = f"{num}"
-          formatted_titles2.append(f"[{number}] {motor.name} {motor.brand} {motor.model}")
-      
-      for idx, formatted_title in enumerate(formatted_titles2, start=1):
-        if idx < 10:
-          spacing_line = " " * 1
-          print(spacing_line, end="", flush=True)
-          title_format = f"{idx}.- {formatted_title}"
-        else:
-          title_format = f"{idx}.- {formatted_title}"
-        print(indentation_title4(title_format))
-      print()
+
+      # print(self.motor_number)
+      for idx, (number, motorcycle) in enumerate(zip(self.motor_number, self.motorcycles_inventory), start=1):
+        if motorcycle.check_available():
+          print(f"{idx:2} [{number:3}]  {motorcycle.name} {motorcycle.brand} {motorcycle.model}")
+      print("\n\n")
+
+
+      # for idx, (num, motor) in enumerate(zip(self.motor_number, self.motorcycles_inventory), start=1):
+      #   if motor.check_available():
+      #     if num < 10:
+      #       spacing_after = " " * 0
+      #       spacing_line = " "
+      #       print(spacing_after, end="", flush=True)
+      #       number = f"{spacing_line}{num}{spacing_line}"
+      #     elif num < 100:
+      #       spacing_after = " " * 0
+      #       spacing_line = " "
+      #       print(spacing_after, end="", flush=True)
+      #       number = f"{num}{spacing_line}"
+      #     else:
+      #       spacing_line = ""
+      #       number = f"{num}"
+      #     formatted_titles2.append(f"[{number}] {motor.name} {motor.brand} {motor.model}")
+      #
+      # for idx, formatted_title in enumerate(formatted_titles2, start=1):
+      #   if idx < 10:
+      #     spacing_line = " " * 1
+      #     print(spacing_line, end="", flush=True)
+      #     title_format = f"{idx}.- {formatted_title}"
+      #   else:
+      #     title_format = f"{idx}.- {formatted_title}"
+      #   print(indentation_title4(title_format))
+      # print()
     
     
     if len(self.trucks_inventory) == 0:
@@ -353,35 +358,8 @@ class Dealership:
         print(f" {bcolors.OKCYAN}{idx:2}{bcolors.ENDC} {wrapped_lines[0].lstrip()}")
         for line in wrapped_lines[1:]:
           print(line)
-      #   if idx < 10:
-      #     spacing_line = " " * 1
-      #     print(spacing_line, end="", flush=True)
-      #     title_format = f"{idx}.- {formatted_title}"
-      #   else:
-      #     title_format = f"{idx}.- {formatted_title}"
-      #   print(indentation_title4(title_format))
-      # print()
+
     
  
-# car1 = Car("Alfa Romeo", "Stelvio", "Ti Sport Carbon")
-# car2 = Car("Aston Martin", "DB11", "AMR")
-# motorcycle = Motorcycle("Kawasaki", "Ninja", "650 Sport")
-# truck = Trucks("Volvo", "FH16-RM", "Still")
 
-# customer = Customer("Veronica")
-
-# dealership = Dealership()
-# dealership.add_vehicles(car1)
-# dealership.add_vehicles(car2)
-# dealership.add_vehicles(motorcycle)
-# dealership.add_vehicles(truck)
-
-# #Show vehicles available
-# dealership.show_available_vehicles()
-
-# customer.inquire_vehicle(car1)
-# customer.buy_vehicle(car1)
-# print()
-# dealership.show_available_vehicles()
-# customer.buy_vehicle(car1)
       
