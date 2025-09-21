@@ -11,25 +11,25 @@ from db.db_luxury_cars import luxury_car_lst
 def print_options():
   print()
   options = [
-    " [1] Add inventory    ",
+    " [1] Add inventory      ",
     " [2] Show Inventory",
-    " [3] Register Customer",
-    " [4] Customer Data",
+    " [3] Register Customer  ",
+    " [4] Customer Data  ",
     " [5] Exit"
-  ] 
-  
+  ]
+
   layout = [2, 3]
   index = 0
   for col in layout:
-  	row = options[index:index+col]
-  	print("".join("{:<15}".format(opt) for opt in row))
-  	index += col
+    row = options[index:index+col]
+    print("".join("{:<15}".format(opt) for opt in row))
+    index += col
 
 def print_service_line():
   print()
   options = [
-    " [1] Luxury Cars",
-    " [2] Luxury Motorcycles",
+    " [1] Luxury Cars  ",
+    " [2] Luxury Motorcycles  ",
     " [3] Exit",
   ]
 
@@ -37,17 +37,17 @@ def print_service_line():
 
 def main():
   dealership = Dealership()
-  
+
   def date_time():
     current_date = datetime.now()
     formatted_date = current_date.strftime("%B %d, %Y")
     return formatted_date
 
   def register_customer1():
-    name = input("\n Enter your name: ")  
+    name = input("\n Enter your name: ")
     customer = Customer(name)
     dealership.register_customers(customer)
-    
+
   customer = Customer("Katharine Bennet")
   dealership.register_customers(customer)
 
@@ -82,7 +82,7 @@ def main():
 
     while True:
       try:
-        selection = int(input("\n Selected car #: "))
+        selection = int(input("\n Selected car [#]: "))
         selected_number = select_index(selection)
         # car_number = selected_number + 1
         if selected_number is None:
@@ -126,7 +126,7 @@ def main():
               break
         else:
           print("Invalid selection")
-        option = int(input(" [1] Selected car #    [2] Exit.\n Option: "))
+        option = int(input(" [1] Selected car [#]  [2] Exit.\n Option: "))
         if option == 2:
           break
 
@@ -213,7 +213,7 @@ def main():
 
     while True:
       try:
-        selection = int(input("\n Selected motorcycle #: "))
+        selection = int(input("\n Selected motorcycle [#]: "))
         selected_number = select_index(selection)
         if selected_number is None:
           print(" Invalid selection, please try again.")
@@ -258,7 +258,7 @@ def main():
         else:
           print("invalid selection")
 
-        option = int(input(" [1] Selected motorcycle #     [2] Exit.\n Option: "))
+        option = int(input(" [1] Selected motorcycle [#]  [2] Exit.\n Option: "))
         if option == 2:
           break
       except ValueError:
@@ -270,7 +270,7 @@ def main():
     random_numbers = random.sample(range(123, 187), 6)
     sorted_numbers = sorted(random_numbers)
     name_trucks = []
-    
+
     for idx, truck in enumerate(trucks_data, start=1):
       name_trucks.append(f"{truck['make']} {truck['model']} {truck['type']}")
       name = truck['make']
@@ -310,7 +310,7 @@ def main():
           customer_name = 'Katharine Bennet'
         else:
           customer_name = dealership.customers[0].name
-        spacing = " " * 15 
+        spacing = " " * 15
         initial_spacing = " " * 34
         print()
         print(f" {initial_spacing}{date_time()}")
@@ -332,7 +332,7 @@ def main():
           else:
             car_details.append(item)
         features_car = car_details
-       
+
         while True:
           dealership.show_available_vehicles()
           question = input("\n Do you like to inquire the details? (y/n) : ").strip().lower()
@@ -342,7 +342,7 @@ def main():
 
               def inquire_car_buy():
                 index = dealership.car_number.index(selection)
-                car = features_car[index] 
+                car = features_car[index]
                 car_object.append(car)
                 car_index = dealership.cars_inventory[index]
                 customer.inquire_vehicle1(car_index) # customer inquire a car_index
@@ -406,7 +406,7 @@ def main():
                       break
                   except ValueError:
                     break
-                  
+
               if selection in dealership.car_number and selection in dealership.motor_number:
                 option = int(input("\n [1] Car [2] Motorcycle [3] Exit\n Option: "))
                 if option == 1:
@@ -423,13 +423,13 @@ def main():
                 inquire_truck_buy()
               else:
                 print(" Invalid selection, try again!")
-            
+
             except ValueError:
               print(" Invalid input, please enter a number.")
               break
             except KeyboardInterrupt:
               break
-            
+
           elif question == 'n':
             break
           else:
@@ -449,33 +449,22 @@ def main():
         print("" * 1, "-" * 53)
         print(f" CUSTOMER DATA {spacing}\n Customer:  {customer_name}")
         print("" * 1, "-" * 53)
-        # print(f" {initial_spacing}Date: August 24, 2024")
-        # print(f" {initial_spacing}{date_time()}")
-        # print()
-        
-        seen = set()
-        result = []
-        for car in customer.purchased_vehicles:
-          if car not in seen:
-            seen.add(car)
-            result.append(car)
-          else:
-            if result.count(car) < 1:
-              result.append(car)
-              
+
+        purchased_vehicles = list(dict.fromkeys(customer.purchased_vehicles))
+
         print("\n List of purchased vehicles\n")
 
-        if len(result) == 0:
+        if len(purchased_vehicles) == 0:
           print("           |Has no purchased vehicles...!|\n")
         else:
-          for idx, car in enumerate(result, start=1):
-            print(f" {idx:2}.- {car.name} {car.brand} {car.model}")   
+          for idx, vehicles in enumerate(purchased_vehicles, start=1):
+            print(f" {idx:2} {vehicles.name} {vehicles.brand} {vehicles.model}")
 
-          print("\n")  
+          print("\n")
       elif option == 5:
         break
     except ValueError:
       print(" Invalid input. Please enter a number")
- 
+
 if __name__ == '__main__':
  main()

@@ -19,7 +19,7 @@ class Vehicle:
     self.brand = brand
     self.model = model
     self.is_available = True
-  
+
   def sell(self):
     if self.is_available:
       self.is_available = False
@@ -34,7 +34,7 @@ class Vehicle:
 
   def check_available(name):
     return name.is_available
-  
+
   def get_price(self):
     return self.price
 
@@ -43,7 +43,7 @@ class Vehicle:
 
   def start_engine(self):
     raise NotImplementedError("This methods should be implement for sub-class")
-  
+
   def stop_engine(self):
     raise NotImplementedError("This methods should be implement for sub-class")
 
@@ -54,13 +54,13 @@ class Car(Vehicle):
       return f"{self.name} {self.brand} {self.model} car is running"
     else:
       return f"The {self.name} {self.brand} {self.model} car is not running"
-  
+
   def stop_engine(self):
     if not self.is_available:
       return f"{self.name} {self.brand} {self.model} car is stopped"
     else:
       return f"The {self.name} {self.brand} {self.model} car is not available"
-    
+
 class Motorcycle(Vehicle):
   def start_engine(self):
     if not self.is_available:
@@ -86,7 +86,7 @@ class Trucks(Vehicle):
       return f"{self.name} {self.brand} {self.model} trucks is stopped"
     else:
       return f"The {self.name} {self.brand} {self.model} trucks is not available"
-   
+
 class Customer:
   def __init__(self, name):
     self.name = name
@@ -101,7 +101,7 @@ class Customer:
         message = f"{bcolors.FAIL}Sorry, the {vehicle.name} {vehicle.brand} {vehicle.model} vehicle is not available.{bcolors.ENDC}"
         indentation_title5(message)
 
-  
+
   def inquire_vehicle1(self, vehicle: Vehicle):
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
@@ -169,7 +169,7 @@ class Customer:
       ignition = f"no data"
     if 'cooling' in motor_object[0]:
       cooling = motor_object[0]['cooling']
-    else: 
+    else:
       cooling = f"no data"
     if 'lubrication' in motor_object[0]:
       lubrication = motor_object[0]['lubrication']
@@ -191,7 +191,7 @@ class Customer:
       fuel_capacity =motor_object[0]['fuel_capacity']
     else:
       fuel_capacity = f"no data"
-     
+
     if vehicle.check_available():
       initial_line = " " * 42
       spacing_line = " " * 17
@@ -242,12 +242,12 @@ class Dealership:
     message = f"{bcolors.OKCYAN}The Car {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
 
-    
+
   def add_vehicles2(self, vehicle: Vehicle):
     self.motorcycles_inventory.append(vehicle)
     message = f"{bcolors.OKCYAN}The Motorcycle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
     indentation_title5(message)
-  
+
   def add_vehicles3(self, vehicle: Vehicle):
     self.trucks_inventory.append(vehicle)
 
@@ -272,7 +272,7 @@ class Dealership:
 
       for idx, (number, car) in enumerate(zip(self.car_number, self.cars_inventory), start=1):
         if car.check_available():
-          formatted_titles1.append(f"[{number}] {car.name} {car.brand} {car.model}")
+          formatted_titles1.append(f"[{number:2}] {car.name} {car.brand} {car.model}")
 
       for idx, formatted_title in enumerate(formatted_titles1, start=1):
         wrapped_lines = textwrap_name(formatted_title)
@@ -308,14 +308,14 @@ class Dealership:
       for idx, (num, truck) in enumerate(zip(self.truck_number, self.trucks_inventory), start=1):
         if truck.check_available():
           formatted_titles3.append(f" [{num:3}] {truck.name} {truck.brand} {truck.model}")
-      
+
       for idx, formatted_title in enumerate(formatted_titles3, start=1):
         wrapped_lines = textwrap_name(formatted_title)
         print(f" {bcolors.OKCYAN}{idx:2}{bcolors.ENDC} {wrapped_lines[0].lstrip()}")
         for line in wrapped_lines[1:]:
           print(line)
 
-    
- 
 
-      
+
+
+
