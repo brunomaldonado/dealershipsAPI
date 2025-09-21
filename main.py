@@ -296,13 +296,15 @@ def main():
         selected_option = int(input(" Option: "))
         if isinstance(selected_option, int):
           if selected_option == 1:
-            print(f"\n{' ' * 1}{'-' * 53} \n{' ' * 1}LUXURY CARS\n {'-' * 53}\n")
+            print(f"\n{' ' * 1}{'-' * 54}")
+            print(f"{' ' * 1}LUXURY CARS\n {'-' * 54}\n")
             #print(" LUXURY CARS")
             #print("" * 1, "-" * 53)
             #print("\n")
             luxury_car()
           elif selected_option == 2:
-            print(f"\n{' ' * 1}{'-' * 53} \n{' ' * 1}LUXURY MOTORCYCLES\n {'-' * 53}\n")
+            print(f"\n{' ' * 1}{'-' * 54}")
+            print(f"{' ' * 1}LUXURY MOTORCYCLES\n {'-' * 54}\n")
             luxury_motorcycle()
         else:
           print(" Invalid selection")
@@ -316,10 +318,10 @@ def main():
         initial_spacing = " " * 34
         print()
         print(f" {initial_spacing}{date_time()}")
-        print("" * 1, "-" * 53)
+        print("" * 1, "-" * 54)
         print(f" INVENTORY {spacing}\n Customer: {customer_name}")
         # print("" * 1, " " * 15, "-" * 20, )
-        print("" * 1, "-" * 53, )
+        print("" * 1, "-" * 54, )
 
         # print(f"Dealership motor number: {dealership.motor_number}")
 

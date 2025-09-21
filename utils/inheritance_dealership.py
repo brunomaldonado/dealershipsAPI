@@ -257,9 +257,9 @@ class Dealership:
     print(f"\n{textwrap_message(message)}\n")
 
   def show_available_vehicles(self):
-    print("" * 1, "-" * 53)
+    print("" * 1, "-" * 54)
     print(f"        Vehicles Available on the Dealership.".upper())
-    print("" * 1, "-" * 53)
+    print("" * 1, "-" * 54)
 
     formatted_titles1 = []
     formatted_titles2 = []
