@@ -266,7 +266,7 @@ class Dealership:
     formatted_titles3 = []
 
     if len(self.cars_inventory) == 0:
-      print("\n\n You don't have any vehicles added yet.\n")
+      print("\n\n You don't have any luxury cars added yet.\n")
     else:
       print("\n Cars available.\n")
 
@@ -283,7 +283,7 @@ class Dealership:
 
     if len(self.motorcycles_inventory) == 0:
       # print("\n Motorcycles available.")
-      print(" You don't have any Motorcycles added yet.\n")
+      print("\n\n You don't have any Motorcycles added yet.\n")
       # pass
     else:
       print("\n Motorcycles available.\n")

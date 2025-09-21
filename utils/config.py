@@ -8,14 +8,14 @@ motor_object = []
 
 def textwrap_title(title):
   spacing_line = " " * 7
-  max_width = 49
+  max_width = 48
   wrapped_title = textwrap.wrap(title, max_width)
 
   return[f"{spacing_line}{line}" for line in wrapped_title]
 
 def textwrap_name(name):
-  spacing_line = " " * 9
-  max_width = 60
+  spacing_line = " " * 10
+  max_width = 51
   wrapped_title = textwrap.wrap(name, max_width)
 
   return [f"{spacing_line}{line}" for line in wrapped_title]

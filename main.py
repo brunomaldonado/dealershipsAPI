@@ -11,30 +11,29 @@ from db.db_luxury_cars import luxury_car_lst
 def print_options():
   print()
   options = [
-    " [1] Add inventory",
+    " [1] Add inventory    ",
     " [2] Show Inventory",
     " [3] Register Customer",
     " [4] Customer Data",
     " [5] Exit"
   ] 
   
-  for i in range(0, len(options), 3):
-    print("{:<15} {:<15} {:<15}".format(
-      *options[i:i+3], *[''] * (3 - len(options[i:i+3]))
-    ))
+  layout = [2, 3]
+  index = 0
+  for col in layout:
+  	row = options[index:index+col]
+  	print("".join("{:<15}".format(opt) for opt in row))
+  	index += col
 
 def print_service_line():
   print()
   options = [
-    " [1] Luxury Cars"
+    " [1] Luxury Cars",
     " [2] Luxury Motorcycles",
     " [3] Exit",
   ]
 
-  for i in range(0, len(options), 3):
-    print("{:<15} {:<15} {:<15}".format(
-      *options[i:i+3], *[''] * (3 - len(options[i:i+3]))
-    ))
+  print("".join("{:<15}".format(opt) for opt in options))
 
 def main():
   dealership = Dealership()
@@ -444,11 +443,11 @@ def main():
         else:
           customer_name = dealership.customers[0].name
         spacing = " " * 11
-        initial_spacing = " " * 38
+        initial_spacing = " " * 34
         print()
         print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
-        print(f" CUSTOMER DATA {spacing}Customer: 🧑🏼‍⚖️ {customer_name}")
+        print(f" CUSTOMER DATA {spacing}\n Customer:  {customer_name}")
         print("" * 1, "-" * 53)
         # print(f" {initial_spacing}Date: August 24, 2024")
         # print(f" {initial_spacing}{date_time()}")
