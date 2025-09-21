@@ -20,6 +20,16 @@ def textwrap_name(name):
 
   return [f"{spacing_line}{line}" for line in wrapped_title]
 
+def textwrap_message(message):
+  spacing_line = " " * 1
+  max_width = 60
+  wrapped_title = textwrap.wrap(message, max_width)
+  # first format
+  # for line in wrapped_title:
+  #   print(f"{spacing_line}{line}")
+
+  # second format
+  return "\n".join([f"{spacing_line}{line}" for line in wrapped_title])
 
 def indentation_title2(title, width=46, char_delay=0):
   # print(" " * 1, "-" * 53)

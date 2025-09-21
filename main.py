@@ -107,7 +107,7 @@ def main():
 
               count_numbers = dealership.car_number.count(selection)
               if dealership.car_number.count(selection) > 1:
-                print(" This item has been added recently.....")
+                print(" This item has been added recently.....\n")
 
               if count_numbers < 2:
                 dealership.add_vehicles1(car)
@@ -128,6 +128,7 @@ def main():
           print("Invalid selection")
         option = int(input(" [1] Selected car [#]  [2] Exit.\n Option: "))
         if option == 2:
+          print("\n")
           break
 
       except ValueError:
@@ -260,6 +261,7 @@ def main():
 
         option = int(input(" [1] Selected motorcycle [#]  [2] Exit.\n Option: "))
         if option == 2:
+          print("\n")
           break
       except ValueError:
         print(" Invalid input, please enter a number.")
@@ -288,19 +290,19 @@ def main():
   while True:
     try:
       print_options()
-      option = int(input("\n Enter option: "))
+      option = int(input(" Enter option: "))
       if option == 1:
         print_service_line()
-        selected_option = int(input("\n Option: "))
+        selected_option = int(input(" Option: "))
         if isinstance(selected_option, int):
           if selected_option == 1:
-            print("\n LUXURY CARS \n")
+            print(f"\n{' ' * 1}{'-' * 53} \n{' ' * 1}LUXURY CARS\n {'-' * 53}\n")
+            #print(" LUXURY CARS")
+            #print("" * 1, "-" * 53)
+            #print("\n")
             luxury_car()
           elif selected_option == 2:
-            print("\n")
-            print("" * 1, "-" * 53)
-            print(" LUXURY MOTORCYCLES")
-            print("" * 1, "-" * 53)
+            print(f"\n{' ' * 1}{'-' * 53} \n{' ' * 1}LUXURY MOTORCYCLES\n {'-' * 53}\n")
             luxury_motorcycle()
         else:
           print(" Invalid selection")
@@ -422,7 +424,7 @@ def main():
               elif selection in dealership.truck_number:
                 inquire_truck_buy()
               else:
-                print(" Invalid selection, try again!")
+                print(" Invalid selection, try again!\n")
 
             except ValueError:
               print(" Invalid input, please enter a number.")
@@ -431,9 +433,10 @@ def main():
               break
 
           elif question == 'n':
+            print("\n")
             break
           else:
-            print(" Please enter y or n")
+            print(" Please enter y or n\n\n")
 
       elif option == 3:
         register_customer1()

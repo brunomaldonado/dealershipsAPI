@@ -1,7 +1,7 @@
-
-
-from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name
 import random
+
+from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message
+
 class bcolors:
   HEADER = '\033[95m'
   OKBLUE = '\033[94m'
@@ -25,11 +25,11 @@ class Vehicle:
       self.is_available = False
       #print(f" The {self.name} {self.brand} {self.model} has been sold ")
       message = f"{bcolors.OKGREEN}The vehicle {self.name} {self.brand} {self.model} has been sold.{bcolors.ENDC}"
-      indentation_title5(message)
+      print(f"\n{textwrap_message(message)}\n")
     else:
       #print(f" The {self.name} {self.brand} {self.model} is not available")
       message = f"The vehicle {self.name} {self.brand} {self.model} is not available{bcolors.ENDC}"
-      indentation_title5(message)
+      print(f"\n{textwrap_message(message)}\n")
 
 
   def check_available(name):
@@ -99,13 +99,13 @@ class Customer:
       else:
         #print(f"\n Sorry this {vehicle.name} {vehicle.brand} {vehicle.model} is not available")
         message = f"{bcolors.FAIL}Sorry, the {vehicle.name} {vehicle.brand} {vehicle.model} vehicle is not available.{bcolors.ENDC}"
-        indentation_title5(message)
+        print(f"\n{textwrap_message(message)}\n")
 
 
   def inquire_vehicle1(self, vehicle: Vehicle):
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
     # print("car_object...", car_object)
     if vehicle.check_available():
@@ -132,7 +132,7 @@ class Customer:
   def inquire_vehicle2(self, vehicle: Vehicle):
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
     # print(motor_object)
     if 'power' in motor_object[0]:
@@ -224,7 +224,7 @@ class Customer:
   def inquire_vehicle3(self, vehicle: Vehicle):
     availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
     message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
 class Dealership:
   def __init__(self):
@@ -240,13 +240,13 @@ class Dealership:
   def add_vehicles1(self, vehicle: Vehicle):
     self.cars_inventory.append(vehicle)
     message = f"{bcolors.OKCYAN}The Car {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
 
   def add_vehicles2(self, vehicle: Vehicle):
     self.motorcycles_inventory.append(vehicle)
     message = f"{bcolors.OKCYAN}The Motorcycle {vehicle.name} {vehicle.brand} {vehicle.model} has been added to the inventory.{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
   def add_vehicles3(self, vehicle: Vehicle):
     self.trucks_inventory.append(vehicle)
@@ -254,7 +254,7 @@ class Dealership:
   def register_customers(self, customer: Customer):
     self.customers.append(customer)
     message = f"{bcolors.OKBLUE}{customer.name} customer has been registered at the dealership{bcolors.ENDC}"
-    indentation_title5(message)
+    print(f"\n{textwrap_message(message)}\n")
 
   def show_available_vehicles(self):
     print("" * 1, "-" * 53)
