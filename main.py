@@ -1,13 +1,11 @@
 import random
-import sys
-import time
 from utils import server
 from utils.config import car_object, motor_object, indentation_title4, textwrap_title
 from utils.inheritance_dealership import Car, Motorcycle, Trucks, Customer, Dealership
 from rapid.trucks import trucks_data
 from datetime import datetime
-from db.db_motorcycle import motorcycle_data_lst
-from rapid.motorcycles import luxury_motorcycle, features_motorcycle
+from db.db_luxury_motorcycle import motorcycle_data_lst
+from db.db_luxury_cars import luxury_car_lst
 
 
 def print_options():
@@ -58,8 +56,8 @@ def main():
   features_car = []
   def luxury_car():
     data = server.car_engines()
-    list_car_brands = []
     car_price = []
+
     lower_bound = 23950
     upper_bound = 80790
     random_numbers = [random.uniform(lower_bound, upper_bound) for _ in range(100)]
@@ -70,199 +68,203 @@ def main():
       car_price.append(prices)
 
     # print(car_price)
-    for idx, item in enumerate(data, start=1):
-      list_car_brands.append(f"{item['make_model_trim']['make_model']['make']['name']} {item['make_model_trim']['make_model']['name']} {item['make_model_trim']['name']}")
+    list_car_models = list(dict.fromkeys(luxury_car_lst))
 
-    seen = set()
-    unique_data = []
-    for car in list_car_brands:
-      if car not in seen:
-        seen.add(car)
-        unique_data.append(car)
-      else:
-        if unique_data.count(car) < 1:
-          unique_data.append(car)
+    # print(f"luxury_car_lst {len(luxury_car_lst)}\n unique data {len(unique_data)}")
 
-    for idx, car in enumerate(unique_data, start=1):
+    for idx, car in enumerate(list_car_models, start=1):
       print(f" [{idx:2}] {car}")
-      
+
     def select_index(selection):
-      if 1 <= selection <= len(list_car_brands) or 1 <= selection <= len(prices):
+      if 1 <= selection <= len(list_car_models) or 1 <= selection <= len(prices):
         return selection - 1
       else:
         return None
-     
+
     while True:
-      selection = int(input("\n Selected car #: "))
-      selected_number = select_index(selection)
-      car_number = selected_number + 1
-      if isinstance(selected_number, int):
-        car_brands = unique_data[selected_number]
-        for model_name in data:
-          car_models = f"{model_name['make_model_trim']['make_model']['make']['name']} {model_name['make_model_trim']['make_model']['name']} {model_name['make_model_trim']['name']}"
-          if car_brands == car_models:
-            model_name['price'] = car_price[selected_number]
-            features_car.append(model_name)
-            # print(f"CAR... OBJECT {model_name}")
-            name = model_name['make_model_trim']['make_model']['make']['name']
-            brand = model_name['make_model_trim']['make_model']['name']
-            model = model_name['make_model_trim']['name']
-            #price = car_price[selected_number]
-            # print(name, brand, model, price)
-            model_name = Car(name, brand, model)
-            dealership.car_number.append(car_number) 
-            count_numbers = dealership.car_number.count(selection)
-            if count_numbers < 2:
-              dealership.add_vehicles1(model_name)
-              
-            count = 0
-            new_list = []
-            for number in dealership.car_number:
-              if number == selection:
-                if count == 0:
+      try:
+        selection = int(input("\n Selected car #: "))
+        selected_number = select_index(selection)
+        # car_number = selected_number + 1
+        if selected_number is None:
+          print(" Invalid selection, please try again.")
+          continue
+        if isinstance(selected_number, int):
+          car_brand = list_car_models[selected_number]
+          for model_name in data:
+            car_model = f"{model_name['make_model_trim']['make_model']['make']['name']} {model_name['make_model_trim']['make_model']['name']} {model_name['make_model_trim']['name']}"
+            if car_brand == car_model:
+              model_name['price'] = car_price[selected_number]
+              features_car.append(model_name)
+              # print(f"CAR... OBJECT {model_name}")
+              name = model_name['make_model_trim']['make_model']['make']['name']
+              brand = model_name['make_model_trim']['make_model']['name']
+              model = model_name['make_model_trim']['name']
+              # price = car_price[selected_number]
+              # print(name, brand, model, price)
+              car = Car(name, brand, model)
+
+              dealership.car_number.append(selected_number + 1)
+
+              count_numbers = dealership.car_number.count(selection)
+              if dealership.car_number.count(selection) > 1:
+                print(" This item has been added recently.....")
+
+              if count_numbers < 2:
+                dealership.add_vehicles1(car)
+                # features_car.append(model_name)
+
+              count = 0
+              new_list = []
+              for number in dealership.car_number:
+                if number == selection:
+                  if count == 0:
+                    new_list.append(number)
+                    count += 1
+                else:
                   new_list.append(number)
-                  count += 1
-              else:
-                new_list.append(number)
-            dealership.car_number = new_list
-            break
-      else:
-        print("Invalid selection")
-      option = int(input(" [1] Selected car #    [2] Exit.\n Option: "))
-      if option == 2:
-        break
+              dealership.car_number = new_list
+              break
+        else:
+          print("Invalid selection")
+        option = int(input(" [1] Selected car #    [2] Exit.\n Option: "))
+        if option == 2:
+          break
+
+      except ValueError:
+        print(" Invalid input, please enter a number.")
+        continue
+
 
   # motorcycle request.......................................................................
-  # features_motorcycle = []
-  # def luxury_motorcycle():
-  #   motorcycle_names = ['BMW', 'DUCATI', 'HONDA', 'HARLEY-DAVIDSON', 'KAWASAKI', 'SUZUKI']
-  #   # motorcycle_names = ['DUCATI', 'BMW', 'KAWASAKI', 'SUZUKI']
-  #   # motorcycle_data_lst = []
-  #   data = []
-  #   list_motorcycle_brands = []
-  #   list_motorcycle_models = []
-  #   motorcycle_price = []
-  #
-  #   spinner = ['-', '\\', '|', '/']
-  #   # spinner = ['..', '../', '.-', '...', '.\\', '..|', '..']
-  #
-  #   # 3.254,00
-  #   lower_bound = 263805
-  #   upper_bound = 594713
-  #
-  #   random_numbers = [random.uniform(lower_bound, upper_bound) for _ in range(176)]
-  #   # print(random_numbers)
-  #
-  #   for value in random_numbers:
-  #     on_sale = value
-  #     formatted_price = "{:,.2f}".format(on_sale / 176)
-  #     price = formatted_price.replace(',', 'X').replace('.', ',').replace('X', '.')
-  #     motorcycle_price.append(price)
-  #
-  #   # print(f"DATA {motorcycle_data_lst} \n\nLEN {len(motorcycle_data_lst)}")
-  #
-  #   for sublist in motorcycle_data_lst:
-  #     for obj_lst in sublist:
-  #       data.append(obj_lst)
-  #
-  #   for item in data:
-  #     list_motorcycle_brands.append(f"{item['make']} {item['model']} {item['type']}")
-  #
-  #   # print(data)
-  #   elements = ['Honda CB125F                                            Allround',
-  #               'Honda CB125R                                           Naked bike',
-  #               'Honda CB125e                                           Naked bike',
-  #               'Honda CB150F                                            Allround']
-  #
-  #   def filter_new_brands(elements, items):
-  #     elements_clean = [" ".join(e.split()) for e in elements]
-  #     new_brands = []
-  #     for d in items:
-  #       d_clean = " ".join(d.split())
-  #       if d_clean not in elements_clean:
-  #         new_brands.append(d)
-  #
-  #     return new_brands
-  #
-  #   new_data = filter_new_brands(elements, list_motorcycle_brands)
-  #   # print(new_data)
-  #
-  #   counter = 1
-  #   for brand_name in list_motorcycle_brands:
-  #     if "Honda CB125F " <= brand_name <= "Honda CB150F Allround":
-  #       continue
-  #     if brand_name == "Honda CB200X Sport":
-  #       counter = 73
-  #     wrapped_lines = textwrap_title(brand_name)
-  #     print(f" [{counter:3}] {wrapped_lines[0].lstrip()}")
-  #     for line in wrapped_lines[1:]:
-  #       print(line)
-  #     list_motorcycle_models.append(brand_name)
-  #     counter += 1
-  #
-  #   # print(f"list_motorcycle_brands:\n{len(new_data)}\n\nlist_motorcycle_models:\n{len(list_motorcycle_models)}")
-  #
-  #   def select_index(selection):
-  #     if 1 <= selection <= len(new_data):
-  #       return selection - 1
-  #     else:
-  #       return None
-  #
-  #   while True:
-  #     try:
-  #       selection = int(input("\n Selected motorcycle #: "))
-  #       selected_number = select_index(selection)
-  #       # motorcycle_number = selected_number + 1
-  #       #print(f"\n You selected option {selection}\n selected_number {selected_number}\n")
-  #       if selected_number is None:
-  #         print(" Invalid selection, please try again.")
-  #         continue
-  #       if isinstance(selected_number, int):
-  #         motorcycle_brand = list_motorcycle_models[selected_number]
-  #         for model_name in data:
-  #           motorcycle_model = f"{model_name['make']} {model_name['model']} {model_name['type']}"
-  #
-  #           if motorcycle_brand == motorcycle_model:
-  #             model_name['price'] = motorcycle_price[selected_number]
-  #             # print(" model name", model_name) # return object data
-  #             # features_motorcycle.append(model_name)
-  #             name = model_name['make']
-  #             brand = model_name['model']
-  #             model = model_name['type']
-  #             # print(name, brand, model)
-  #             motor = Motorcycle(name, brand, model)
-  #
-  #             dealership.motor_number.append(selected_number + 1)
-  #
-  #             count_numbers = dealership.motor_number.count(selection)
-  #             if dealership.motor_number.count(selection) > 1:
-  #               print(" This item has been added recently...\n")
-  #               # dealership.motor_number.pop()
-  #
-  #             if count_numbers < 2:
-  #               dealership.add_vehicles2(motor)
-  #               features_motorcycle.append(model_name)
-  #
-  #             count = 0
-  #             new_list = []
-  #             for number in dealership.motor_number:
-  #               if number == selection:
-  #                 if count == 0:
-  #                   new_list.append(number)
-  #                   count += 1
-  #               else:
-  #                 new_list.append(number)
-  #             dealership.motor_number = new_list
-  #             break
-  #       else:
-  #         print("invalid selection")
-  #
-  #       option = int(input(" [1] Selected motorcycle #     [2] Exit.\n Option: "))
-  #       if option == 2:
-  #         break
-  #     except ValueError:
-  #       print(" Invalid input, please enter a number.")
-  #       continue
+  features_motorcycle = []
+  def luxury_motorcycle():
+    motorcycle_names = ['BMW', 'DUCATI', 'HONDA', 'HARLEY-DAVIDSON', 'KAWASAKI', 'SUZUKI']
+    # motorcycle_names = ['DUCATI', 'BMW', 'KAWASAKI', 'SUZUKI']
+    # motorcycle_data_lst = []
+    data = []
+    list_motorcycle_brands = []
+    list_motorcycle_models = []
+    motorcycle_price = []
+
+    spinner = ['-', '\\', '|', '/']
+    # spinner = ['..', '../', '.-', '...', '.\\', '..|', '..']
+
+    # 3.254,00
+    lower_bound = 263805
+    upper_bound = 594713
+
+    random_numbers = [random.uniform(lower_bound, upper_bound) for _ in range(176)]
+    # print(random_numbers)
+
+    for value in random_numbers:
+      on_sale = value
+      formatted_price = "{:,.2f}".format(on_sale / 176)
+      price = formatted_price.replace(',', 'X').replace('.', ',').replace('X', '.')
+      motorcycle_price.append(price)
+
+    # print(f"DATA {motorcycle_data_lst} \n\nLEN {len(motorcycle_data_lst)}")
+
+    for sublist in motorcycle_data_lst:
+      for obj_lst in sublist:
+        data.append(obj_lst)
+
+    for item in data:
+      list_motorcycle_brands.append(f"{item['make']} {item['model']} {item['type']}")
+
+    # print(data)
+    elements = ['Honda CB125F                                            Allround',
+                'Honda CB125R                                           Naked bike',
+                'Honda CB125e                                           Naked bike',
+                'Honda CB150F                                            Allround']
+
+    def filter_new_brands(elements, items):
+      elements_clean = [" ".join(e.split()) for e in elements]
+      new_brands = []
+      for d in items:
+        d_clean = " ".join(d.split())
+        if d_clean not in elements_clean:
+          new_brands.append(d)
+
+      return new_brands
+
+    new_data = filter_new_brands(elements, list_motorcycle_brands)
+    # print(new_data)
+
+    counter = 1
+    for brand_name in list_motorcycle_brands:
+      if "Honda CB125F " <= brand_name <= "Honda CB150F Allround":
+        continue
+      if brand_name == "Honda CB200X Sport":
+        counter = 73
+      wrapped_lines = textwrap_title(brand_name)
+      print(f" [{counter:3}] {wrapped_lines[0].lstrip()}")
+      for line in wrapped_lines[1:]:
+        print(line)
+      list_motorcycle_models.append(brand_name)
+      counter += 1
+
+    # print(f"list_motorcycle_brands:\n{len(new_data)}\n\nlist_motorcycle_models:\n{len(list_motorcycle_models)}")
+
+    def select_index(selection):
+      if 1 <= selection <= len(new_data):
+        return selection - 1
+      else:
+        return None
+
+    while True:
+      try:
+        selection = int(input("\n Selected motorcycle #: "))
+        selected_number = select_index(selection)
+        if selected_number is None:
+          print(" Invalid selection, please try again.")
+          continue
+        if isinstance(selected_number, int):
+          motorcycle_brand = list_motorcycle_models[selected_number]
+          for model_name in data:
+            motorcycle_model = f"{model_name['make']} {model_name['model']} {model_name['type']}"
+
+            if motorcycle_brand == motorcycle_model:
+              model_name['price'] = motorcycle_price[selected_number]
+              # print(" model name", model_name) # return object data
+              # features_motorcycle.append(model_name)
+              name = model_name['make']
+              brand = model_name['model']
+              model = model_name['type']
+              # print(name, brand, model)
+              motor = Motorcycle(name, brand, model)
+
+              dealership.motor_number.append(selected_number + 1)
+
+              count_numbers = dealership.motor_number.count(selection)
+              if dealership.motor_number.count(selection) > 1:
+                print(" This item has been added recently...\n")
+                # dealership.motor_number.pop()
+
+              if count_numbers < 2:
+                dealership.add_vehicles2(motor)
+                features_motorcycle.append(model_name)
+
+              count = 0
+              new_list = []
+              for number in dealership.motor_number:
+                if number == selection:
+                  if count == 0:
+                    new_list.append(number)
+                    count += 1
+                else:
+                  new_list.append(number)
+              dealership.motor_number = new_list
+              break
+        else:
+          print("invalid selection")
+
+        option = int(input(" [1] Selected motorcycle #     [2] Exit.\n Option: "))
+        if option == 2:
+          break
+      except ValueError:
+        print(" Invalid input, please enter a number.")
+        continue
 
   # Trucks data ..........................................
   def luxury_truck():
@@ -281,7 +283,7 @@ def main():
       dealership.add_vehicles3(truck)
       for number in sorted_numbers:
         dealership.truck_number.append(number)
-  
+
   luxury_truck()
 
   while True:
@@ -289,7 +291,6 @@ def main():
       print_options()
       option = int(input("\n Enter option: "))
       if option == 1:
-        # add inventory [] line services
         print_service_line()
         selected_option = int(input("\n Option: "))
         if isinstance(selected_option, int):
@@ -311,7 +312,7 @@ def main():
         else:
           customer_name = dealership.customers[0].name
         spacing = " " * 15 
-        initial_spacing = " " * 38
+        initial_spacing = " " * 34
         print()
         print(f" {initial_spacing}{date_time()}")
         print("" * 1, "-" * 53)
@@ -319,7 +320,7 @@ def main():
         # print("" * 1, " " * 15, "-" * 20, )
         print("" * 1, "-" * 53, )
 
-        
+        # print(f"Dealership motor number: {dealership.motor_number}")
 
         car_id_count = {}
         car_details = []
@@ -365,7 +366,7 @@ def main():
 
               def inquire_motor_buy():
                 index = dealership.motor_number.index(selection)
-                motor = features_motorcycle[index] 
+                motor = features_motorcycle[index]
                 motor_object.append(motor)
                 motor_index = dealership.motorcycles_inventory[index]
                 customer.inquire_vehicle2(motor_index) # customer inquire a motor_index

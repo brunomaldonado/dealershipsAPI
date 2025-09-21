@@ -1,20 +1,17 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from utils import server
-import random
+# import sys
+# import os
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils.oop_dealership import Car, Dealership, Customer
-# from utils.config import car_object
+import random
+from utils import server
+from utils.inheritance_dealership import Car, Dealership, Customer
+from db.db_luxury_cars import luxury_car_lst
 
 def luxury_car():
   dealership = Dealership()
   # data = server.car_trims()
   data = server.car_engines()
-  # print(data)
-  new_data = []
   car_price = []
-  # print(f"\ndata {data}\nlen {len(data)}\n")
 
   lower_bound = 263549.99
   upper_bound = 895300.49
@@ -27,76 +24,81 @@ def luxury_car():
     prices = "{:,.2f}".format(on_sale)
     car_price.append(prices)
 
-  for idx, item in enumerate(data, start=1):
-    # print(f"[{idx:2}] {item['make_model']['make']['name']} {item['make_model']['name']} {item['name']}")
-    # new_data.append(f"{item['make_model']['make']['name']} {item['make_model']['name']} {item['name']}")
-    new_data.append(f"{item['make_model_trim']['make_model']['make']['name']} {item['make_model_trim']['make_model']['name']} {item['make_model_trim']['name']}")
+  # for idx, item in enumerate(data, start=1):
+  #   # print(f"[{idx:2}] {item['make_model']['make']['name']} {item['make_model']['name']} {item['name']}")
+  #   # new_data.append(f"{item['make_model']['make']['name']} {item['make_model']['name']} {item['name']}")
+  #   new_data.append(f"{item['make_model_trim']['make_model']['make']['name']} {item['make_model_trim']['make_model']['name']} {item['make_model_trim']['name']}")
 
-  seen = set()
-  unique_data = []
-  for car in new_data:
-    if car not in seen:
-      seen.add(car)
-      unique_data.append(car)
-    else:
-      if unique_data.count(car) < 1:
-        unique_data.append(car)
+  # print(new_data)
 
-  for idx, car in enumerate(unique_data, start=1):
+  list_car_models = list(dict.fromkeys(luxury_car_lst))
+
+  # print(f"luxury_car_lst {len(luxury_car_lst)}\n unique data {len(unique_data)}")
+
+  for idx, car in enumerate(list_car_models, start=1):
     print(f" [{idx:2}] {car}")
 
-  # for idx, item in enumerate(data, start=1):
-  #   # print(f"{list_data[i]['name']}")
-  #   print(f"[{idx:2}] {item['make']['name']} {item['name']}")
-  #   new_data.append(f"{item['make']['name']} {item['name']}")
-    
   features_car = []
   def select_index(selection):
-    if 1 <= selection <= len(new_data) or 1 <= selection <= len(prices):
+    if 1 <= selection <= len(list_car_models) or 1 <= selection <= len(prices):
       return selection - 1
     else:
       return None
-    
+
   while True:
-    selection = int(input("\n Select car #: "))
-    option_car = select_index(selection)
-    # print(option_car)
-    car_num = option_car + 1
-    # if len(dealership.customers) == 0:
-    #   print(f"\n      You need to register...\n")
-    # else:
-    if isinstance(option_car, int):
-      # print("isinstance")
-      get_value = unique_data[option_car]
-      # print("get value", get_value)
-      count = 0
-      for idx, car in enumerate(data, start=1):
-        # content = f"{car['make_model']['make']['name']} {car['make_model']['name']} {car['name']}"
-        content = f"{car['make_model_trim']['make_model']['make']['name']} {car['make_model_trim']['make_model']['name']} {car['make_model_trim']['name']}"
-        count += 1
+    try:
+      selection = int(input("\n Selected car #: "))
+      selected_number = select_index(selection)
+      # car_number = selected_number + 1
+      if selected_number is None:
+        print(" Invalid selection, please try again.")
+        continue
+      if isinstance(selected_number, int):
+        car_brand = list_car_models[selected_number]
+        for model_name in data:
+          car_model = f"{model_name['make_model_trim']['make_model']['make']['name']} {model_name['make_model_trim']['make_model']['name']} {model_name['make_model_trim']['name']}"
+          if car_brand == car_model:
+            model_name['price'] = car_price[selected_number]
+            # features_car.append(model_name)
+            # print(f"CAR... OBJECT {model_name}")
+            name = model_name['make_model_trim']['make_model']['make']['name']
+            brand = model_name['make_model_trim']['make_model']['name']
+            model = model_name['make_model_trim']['name']
+            # price = car_price[selected_number]
+            # print(name, brand, model, price)
+            car = Car(name, brand, model)
 
-        if get_value == content:
-          # print(f"{count} {car}")
-          car['price'] = car_price[option_car]
-          features_car.append(car)
+            dealership.car_number.append(selected_number+1)
 
-          name = car['make_model_trim']['make_model']['make']['name']
-          brand = car['make_model_trim']['make_model']['name']
-          model = car['make_model_trim']['name']
-          price = car_price[option_car]
-          # print(name, brand, model)
-          car = Car(name, brand, model)
-          dealership.add_car(car)
-          dealership.car_number.append(car_num)          
-          break
+            count_numbers = dealership.car_number.count(selection)
+            if dealership.car_number.count(selection) > 1:
+              print(" This item has been added recently.....")
 
-    else:
-      print("Invalid selection")
-    option = int(input(" [1] Select car #    [2] Exit.\n Option: "))
-    if option == 2:
-      # dealership.show_available_cars()
-      break
+            if count_numbers < 2:
+              dealership.add_vehicles1(car)
+              features_car.append(model_name)
+
+            count = 0
+            new_list = []
+            for number in dealership.car_number:
+              if number == selection:
+                if count == 0:
+                  new_list.append(number)
+                  count += 1
+              else:
+                new_list.append(number)
+            dealership.car_number = new_list
+            break
+      else:
+        print("Invalid selection")
+      option = int(input(" [1] Selected car #    [2] Exit.\n Option: "))
+      if option == 2:
+        break
+
+    except ValueError:
+      print(" Invalid input, please enter a number.")
+      continue
 
 if __name__ == '__main__':
-  # luxury_car()
-  pass
+  luxury_car()
+  # pass

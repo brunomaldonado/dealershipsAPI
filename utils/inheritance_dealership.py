@@ -265,90 +265,46 @@ class Dealership:
     formatted_titles2 = []
     formatted_titles3 = []
 
-    # if len(self.cars_inventory) == 0 and len(self.motorcycles_inventory) == 0:
-    #   print("\n You don't have any vehicles added yet.\n")
-
     if len(self.cars_inventory) == 0:
-      # print("\n Cars available.")
-      # print(" You don't have any vehicles added yet.\n")
-      pass
+      print("\n\n You don't have any vehicles added yet.\n")
     else:
       print("\n Cars available.\n")
-      # for idx, vehicle in enumerate(self.cars_inventory, start=1):
-      #   if vehicle.check_available():
-      #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
-      for idx, (num, car) in enumerate(zip(self.car_number, self.cars_inventory), start=1):
+
+      for idx, (number, car) in enumerate(zip(self.car_number, self.cars_inventory), start=1):
         if car.check_available():
-          if num < 10:
-            spacing_after = " " * 0
-            spacing_line = " "
-            print(spacing_after, end="", flush=True)
-            number = f"{num}{spacing_line}"
-          else:
-            spacing_line = ""
-            number = f"{num}"
           formatted_titles1.append(f"[{number}] {car.name} {car.brand} {car.model}")
 
       for idx, formatted_title in enumerate(formatted_titles1, start=1):
-        if idx < 10:
-          spacing_line = " " * 1
-          print(spacing_line, end="", flush=True)
-          title_format = f"{idx}.- {formatted_title}"
-        else:
-          title_format = f"{idx}.- {formatted_title}"
-        print(indentation_title4(title_format))
-      print()
+        wrapped_lines = textwrap_name(formatted_title)
+        print(f" {bcolors.OKCYAN}{idx:2}{bcolors.ENDC} {wrapped_lines[0].lstrip()}")
+
+        for line in wrapped_lines[1:]:
+          print(line)
 
     if len(self.motorcycles_inventory) == 0:
       # print("\n Motorcycles available.")
       print(" You don't have any Motorcycles added yet.\n")
-      pass
+      # pass
     else:
       print("\n Motorcycles available.\n")
 
-      # print(self.motor_number)
       for idx, (number, motorcycle) in enumerate(zip(self.motor_number, self.motorcycles_inventory), start=1):
         if motorcycle.check_available():
-          print(f"{idx:2} [{number:3}]  {motorcycle.name} {motorcycle.brand} {motorcycle.model}")
-      print("\n\n")
+          # print(f"{bcolors.OKCYAN}{idx:2}{bcolors.ENDC} [{number:3}]  {motorcycle.name} {motorcycle.brand} {motorcycle.model}")
+          formatted_titles2.append(f"[{number:3}] {motorcycle.name} {motorcycle.brand} {motorcycle.model}")
 
+      for idx, formatted_title in enumerate(formatted_titles2, start=1):
+        wrapped_lines = textwrap_name(formatted_title)
+        print(f" {bcolors.OKCYAN}{idx:2}{bcolors.ENDC} {wrapped_lines[0].lstrip()}")
 
-      # for idx, (num, motor) in enumerate(zip(self.motor_number, self.motorcycles_inventory), start=1):
-      #   if motor.check_available():
-      #     if num < 10:
-      #       spacing_after = " " * 0
-      #       spacing_line = " "
-      #       print(spacing_after, end="", flush=True)
-      #       number = f"{spacing_line}{num}{spacing_line}"
-      #     elif num < 100:
-      #       spacing_after = " " * 0
-      #       spacing_line = " "
-      #       print(spacing_after, end="", flush=True)
-      #       number = f"{num}{spacing_line}"
-      #     else:
-      #       spacing_line = ""
-      #       number = f"{num}"
-      #     formatted_titles2.append(f"[{number}] {motor.name} {motor.brand} {motor.model}")
-      #
-      # for idx, formatted_title in enumerate(formatted_titles2, start=1):
-      #   if idx < 10:
-      #     spacing_line = " " * 1
-      #     print(spacing_line, end="", flush=True)
-      #     title_format = f"{idx}.- {formatted_title}"
-      #   else:
-      #     title_format = f"{idx}.- {formatted_title}"
-      #   print(indentation_title4(title_format))
-      # print()
-    
-    
+        for line in wrapped_lines[1:]:
+          print(line)
+
     if len(self.trucks_inventory) == 0:
       pass
     else:
       print("\n Trucks available.\n")
 
-      # for idx, vehicle in enumerate(self.trucks_inventory, start=1):
-      #   if vehicle.check_available():
-      #     print(f"{idx:2}.-  {vehicle.name} {vehicle.brand} {vehicle.model}")
       for idx, (num, truck) in enumerate(zip(self.truck_number, self.trucks_inventory), start=1):
         if truck.check_available():
           formatted_titles3.append(f" [{num:3}] {truck.name} {truck.brand} {truck.model}")

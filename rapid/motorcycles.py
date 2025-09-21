@@ -1,18 +1,17 @@
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# import sys
+# import os
+# import sys
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from utils import server
 import random
-import sys
-from utils.config import textwrap_title
-from db.db_motorcycle import motorcycle_data_lst
+from db.db_luxury_motorcycle import motorcycle_data_lst
 from utils.config import textwrap_title
 from utils.inheritance_dealership import Motorcycle, Dealership
 
-dealership = Dealership()
 
-features_motorcycle = []
 def luxury_motorcycle():
+  dealership = Dealership()
   motorcycle_names = ['BMW', 'DUCATI', 'HONDA', 'HARLEY-DAVIDSON', 'KAWASAKI', 'SUZUKI']
   # motorcycle_names = ['DUCATI', 'BMW', 'KAWASAKI', 'SUZUKI']
   # motorcycle_data_lst = []
@@ -86,6 +85,8 @@ def luxury_motorcycle():
     else:
       return None
 
+  features_motorcycle = []
+
   while True:
     try:
       selection = int(input("\n Selected motorcycle #: "))
@@ -137,12 +138,14 @@ def luxury_motorcycle():
 
       option = int(input(" [1] Selected motorcycle #     [2] Exit.\n Option: "))
       if option == 2:
+        print(dealership.motor_number)
         break
+
     except ValueError:
       print(" Invalid input, please enter a number.")
       continue
 
-if __name__ == '__main__':
-  # luxury_motorcycle()
-  pass
+# if __name__ == '__main__':
+#   luxury_motorcycle()
+
 
