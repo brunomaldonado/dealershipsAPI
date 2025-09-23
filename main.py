@@ -385,7 +385,7 @@ def main():
                       motor_object.clear()
                       break
                     else:
-                      print(" Please enter y or n")
+                      print(" Please enter y or n\n")
                       break
                   except ValueError:
                     break

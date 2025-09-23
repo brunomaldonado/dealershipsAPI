@@ -1,6 +1,6 @@
 import random
 
-from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message
+from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message, torque, bore_stroke, fuel_system, front_suspension, rear_suspension, front_brakes, rear_brakes
 
 class bcolors:
   HEADER = '\033[95m'
@@ -140,13 +140,13 @@ class Customer:
     else:
       power = f"no data"
     if 'torque' in motor_object[0]:
-      torque = motor_object[0]['torque']
+      torque_ = motor_object[0]['torque']
     else:
-      torque = f"no data"
+      torque_ = f"no data"
     if 'bore_stroke' in motor_object[0]:
-      bore_stroke = motor_object[0]['bore_stroke']
+      bore_stroke_ = motor_object[0]['bore_stroke']
     else:
-      bore_stroke = f"no data"
+      bore_stroke_ = f"no data"
     if 'compression' in motor_object[0]:
       compression = motor_object[0]['compression']
     else:
@@ -156,9 +156,9 @@ class Customer:
     else:
       valves_per_cylinder = f"no data"
     if 'fuel_system' in motor_object[0]:
-      fuel_system = motor_object[0]['fuel_system']
+      fuel_system_ = motor_object[0]['fuel_system']
     else:
-      fuel_system = f"no data"
+      fuel_system_ = f"no data"
     if 'fuel_control' in motor_object[0]:
       fuel_control = motor_object[0]['fuel_control']
     else:
@@ -184,9 +184,9 @@ class Customer:
     else:
       emission = f"no data"
     if 'rear_suspension' in motor_object[0]:
-      rear_suspension = motor_object[0]['rear_suspension']
+      rear_suspension_ = motor_object[0]['rear_suspension']
     else:
-      rear_suspension = f"no data"
+      rear_suspension_ = f"no data"
     if 'fuel_capacity' in motor_object[0]:
       fuel_capacity =motor_object[0]['fuel_capacity']
     else:
@@ -203,20 +203,20 @@ class Customer:
       print("\n Key Specifications.")
       print(f" Engine: {motor_object[0]['engine']}")
       print(f" Power: {power} horsepower")
-      print(indentation_title01(f" Torque: {torque} lb-ft"))
-      print(indentation_title02(f" Bore Stroke: {bore_stroke}"))
+      print(torque(f" Torque: {torque_} lb-ft"))
+      print(bore_stroke(f" Bore Stroke: {bore_stroke_}"))
       print(f" Valves per Cylinder: {valves_per_cylinder} Compression: {compression}")
-      print(indentation_title02(f" Fuel System: {fuel_system}"))
+      print(fuel_system(f" Fuel System: {fuel_system_}"))
       print(f" Fuel Control: {fuel_control}")
       print(f" Ignition: {ignition}")
       print(indentation_title02(f" Lubrication: {lubrication}  Cooling: {cooling}  Gearbox: {motor_object[0]['gearbox']}"))
       print(f" Transmission: {motor_object[0]['transmission']}")
       print(indentation_title03(f" Fuel Consumption: {fuel_consumption}"))
       print(indentation_title04(f" Emission: {emission}"))
-      print(indentation_title03(f" Front Suspension: {motor_object[0]['front_suspension']}"))
-      print(indentation_title05(f" Rear Suspension: {rear_suspension}"))
-      print(indentation_title06(f" Front Brakes: {motor_object[0]['front_brakes']}"))
-      print(indentation_title07(f" Rear Brakes: {motor_object[0]['rear_brakes']}"))
+      print(front_suspension(f" Front Suspension: {motor_object[0]['front_suspension']}"))
+      print(rear_suspension(f" Rear Suspension: {rear_suspension_}"))
+      print(front_brakes(f" Front Brakes: {motor_object[0]['front_brakes']}"))
+      print(rear_brakes(f" Rear Brakes: {motor_object[0]['rear_brakes']}"))
       print(f" Fuel Capacity: {fuel_capacity}")
       print(f" Starter: {motor_object[0]['starter']}")
       print(f"\n {spacing_line}Price: ${motor_object[0]['price']} (US starting price)\n")

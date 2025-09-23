@@ -30,12 +30,75 @@ def textwrap_message(message):
     )
     return wrapped_title
 
-#def textwrap_message(message):
-#  spacing_line = " " * 1
-#  max_width = 60
-#  wrapped_title = textwrap.wrap(message, max_width)
+def torque(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 9    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def bore_stroke(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 14    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def fuel_system(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 14    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
 
-#  return "\n".join([f"{spacing_line}{line}" for line in wrapped_title])
+def front_suspension(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 19    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def rear_suspension(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 18    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def front_brakes(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 15    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def rear_brakes(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 14    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
 
 def indentation_title2(title, width=46, char_delay=0):
   # print(" " * 1, "-" * 53)
