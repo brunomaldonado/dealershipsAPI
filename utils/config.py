@@ -19,16 +19,16 @@ def textwrap_name(name):
   wrapped_title = textwrap.wrap(name, max_width)
 
   return [f"{spacing_line}{line}" for line in wrapped_title]
-  
-def textwrap_message(message):
-    max_width = 60  # límite de ancho
-    wrapped_title = textwrap.fill(
-        message,
-        width=max_width,
-        initial_indent=" ",      # la primera línea arranca con un espacio
-        subsequent_indent=" "    # las demás líneas igual, alineadas a la izquierda
+
+def textwrap_message(title):
+  max_width = 60 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent=" ",      # la primera línea arranca con un espacio
+    subsequent_indent=" "   # las demás líneas igual, alineadas a la izquierda
     )
-    return wrapped_title
+  return wrapped_title
 
 def torque(title):
   max_width = 54 # límite de ancho
@@ -58,6 +58,12 @@ def fuel_system(title):
     initial_indent="",      # la primera línea arranca con un espacio
     subsequent_indent=" " * 14    # las demás líneas igual, alineadas a la izquierda
     )
+  return wrapped_title
+
+def ignition(title):
+  max_width = 54
+  wrapped_title = textwrap.fill(title, width=max_width, initial_indent="", subsequent_indent=" " * 11)
+  
   return wrapped_title
 
 def lubrication(title):

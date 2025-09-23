@@ -360,6 +360,7 @@ def main():
                       break
                     elif ask == 'n':
                       car_object.clear()
+                      print("\n")
                       break
                     else:
                       print(" Please enter y or n")
@@ -383,6 +384,7 @@ def main():
                       break
                     elif ask == 'n':
                       motor_object.clear()
+                      print("\n")
                       break
                     else:
                       print(" Please enter y or n\n")
@@ -404,6 +406,7 @@ def main():
                       break
                     elif ask == 'n':
                       # truck_object.clear()
+                      print("\n")
                       break
                     else:
                       print(" Please enter y or n")

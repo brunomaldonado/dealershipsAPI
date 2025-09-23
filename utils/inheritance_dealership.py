@@ -1,6 +1,6 @@
 import random
 
-from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message, torque, bore_stroke, fuel_system, lubrication, fuel_consumption, emission, front_suspension, rear_suspension, front_brakes, rear_brakes
+from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message, torque, bore_stroke, fuel_system, ignition, lubrication, fuel_consumption, emission, front_suspension, rear_suspension, front_brakes, rear_brakes
 
 class bcolors:
   HEADER = '\033[95m'
@@ -103,9 +103,17 @@ class Customer:
 
 
   def inquire_vehicle1(self, vehicle: Vehicle):
-    availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
-    message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    print(f"\n{textwrap_message(message)}\n")
+    if vehicle.check_available():
+      message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {bcolors.ENDC}is Available."
+      print(f"\n{textwrap_message(message)}\n")
+    else:
+      message = f"{bcolors.FAIL}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle is Not Available!.{bcolors.ENDC}"
+      print(f"\n{textwrap_message(message)}\n")
+    
+    #availability = f"is Available." if vehicle.check_available() else f"is Not Available."
+    
+    #message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
+    #print(f"\n{textwrap_message(message)}\n")
 
     # print("car_object...", car_object)
     if vehicle.check_available():
@@ -130,9 +138,16 @@ class Customer:
       print(f"\n {spacing_line}Price: ${car_object[0]['price']} (US starting price)\n")
 
   def inquire_vehicle2(self, vehicle: Vehicle):
-    availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
-    message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    print(f"\n{textwrap_message(message)}\n")
+    if vehicle.check_available():
+      message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {bcolors.ENDC}is Available."
+      print(f"\n{textwrap_message(message)}\n")
+    else:
+      message = f"{bcolors.FAIL}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle is Not Available!.{bcolors.ENDC}"
+      print(f"\n{textwrap_message(message)}\n")
+      
+    #availability = f"{bcolors.HEADER}is Available.---{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
+    #message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
+    #print(f"\n{textwrap_message(message)}\n")
 
     # print(motor_object)
     if 'power' in motor_object[0]:
@@ -164,9 +179,9 @@ class Customer:
     else:
       fuel_control = f"no data"
     if 'ignition' in motor_object[0]:
-      ignition = motor_object[0]['ignition']
+      ignition_ = motor_object[0]['ignition']
     else:
-      ignition = f"no data"
+      ignition_ = f"no data"
     if 'cooling' in motor_object[0]:
       cooling = motor_object[0]['cooling']
     else:
@@ -208,7 +223,7 @@ class Customer:
       print(f" Valves per Cylinder: {valves_per_cylinder} Compression: {compression}")
       print(fuel_system(f" Fuel System: {fuel_system_}"))
       print(f" Fuel Control: {fuel_control}")
-      print(f" Ignition: {ignition}")
+      print(ignition(f" Ignition: {ignition_}"))
       print(lubrication(f" Lubrication: {lubrication_}  Cooling: {cooling}  Gearbox: {motor_object[0]['gearbox']}"))
       print(f" Transmission: {motor_object[0]['transmission']}")
       print(fuel_consumption(f" Fuel Consumption: {fuel_consumption_}"))
@@ -222,9 +237,12 @@ class Customer:
       print(f"\n {spacing_line}Price: ${motor_object[0]['price']} (US starting price)\n")
 
   def inquire_vehicle3(self, vehicle: Vehicle):
-    availability = f"{bcolors.HEADER}is Available{bcolors.ENDC}" if vehicle.check_available() else f"{bcolors.FAIL}is Not Available{bcolors.ENDC}"
-    message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {availability}.{bcolors.ENDC}"
-    print(f"\n{textwrap_message(message)}\n")
+    if vehicle.check_available():
+      message = f"{bcolors.OKCYAN}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle {bcolors.ENDC}is Available."
+      print(f"\n{textwrap_message(message)}\n")
+    else:
+      message = f"{bcolors.FAIL}The {vehicle.name} {vehicle.brand} {vehicle.model} vehicle is Not Available!.{bcolors.ENDC}"
+      print(f"\n{textwrap_message(message)}\n")
 
 class Dealership:
   def __init__(self):
