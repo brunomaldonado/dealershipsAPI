@@ -60,6 +60,29 @@ def fuel_system(title):
     )
   return wrapped_title
 
+def lubrication(title):
+  max_width = 54 # límite de ancho
+  wrapped_title = textwrap.fill(
+    title,
+    width=max_width,
+    initial_indent="",      # la primera línea arranca con un espacio
+    subsequent_indent=" " * 14    # las demás líneas igual, alineadas a la izquierda
+    )
+  return wrapped_title
+  
+def fuel_consumption(title):
+  max_width = 54
+  wrapped_title = textwrap.fill(
+    title, width=max_width, initial_indent="", subsequent_indent=" " * 19)
+    
+  return wrapped_title
+  
+def emission(title):
+  max_width = 54
+  wrapped_title = textwrap.fill(title, width=max_width, initial_indent="", subsequent_indent=" " * 11)
+  
+  return wrapped_title
+  
 def front_suspension(title):
   max_width = 54 # límite de ancho
   wrapped_title = textwrap.fill(

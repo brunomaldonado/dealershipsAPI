@@ -1,6 +1,6 @@
 import random
 
-from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message, torque, bore_stroke, fuel_system, front_suspension, rear_suspension, front_brakes, rear_brakes
+from utils.config import indentation_title2, indentation_title4, indentation_title5, car_object, motor_object, indentation_title01, indentation_title02, indentation_title03, indentation_title04, indentation_title05, indentation_title06, indentation_title07, textwrap_name, textwrap_message, torque, bore_stroke, fuel_system, lubrication, fuel_consumption, emission, front_suspension, rear_suspension, front_brakes, rear_brakes
 
 class bcolors:
   HEADER = '\033[95m'
@@ -172,17 +172,17 @@ class Customer:
     else:
       cooling = f"no data"
     if 'lubrication' in motor_object[0]:
-      lubrication = motor_object[0]['lubrication']
+      lubrication_ = motor_object[0]['lubrication']
     else:
-      lubrication = f"no data"
+      lubrication_ = f"no data"
     if 'fuel_consumption' in motor_object[0]:
-      fuel_consumption = motor_object[0]['fuel_consumption']
+      fuel_consumption_ = motor_object[0]['fuel_consumption']
     else:
-      fuel_consumption = f"no data"
+      fuel_consumption_ = f"no data"
     if 'emission' in motor_object[0]:
-      emission = motor_object[0]['emission']
+      emission_ = motor_object[0]['emission']
     else:
-      emission = f"no data"
+      emission_ = f"no data"
     if 'rear_suspension' in motor_object[0]:
       rear_suspension_ = motor_object[0]['rear_suspension']
     else:
@@ -209,10 +209,10 @@ class Customer:
       print(fuel_system(f" Fuel System: {fuel_system_}"))
       print(f" Fuel Control: {fuel_control}")
       print(f" Ignition: {ignition}")
-      print(indentation_title02(f" Lubrication: {lubrication}  Cooling: {cooling}  Gearbox: {motor_object[0]['gearbox']}"))
+      print(lubrication(f" Lubrication: {lubrication_}  Cooling: {cooling}  Gearbox: {motor_object[0]['gearbox']}"))
       print(f" Transmission: {motor_object[0]['transmission']}")
-      print(indentation_title03(f" Fuel Consumption: {fuel_consumption}"))
-      print(indentation_title04(f" Emission: {emission}"))
+      print(fuel_consumption(f" Fuel Consumption: {fuel_consumption_}"))
+      print(emission(f" Emission: {emission_}"))
       print(front_suspension(f" Front Suspension: {motor_object[0]['front_suspension']}"))
       print(rear_suspension(f" Rear Suspension: {rear_suspension_}"))
       print(front_brakes(f" Front Brakes: {motor_object[0]['front_brakes']}"))
